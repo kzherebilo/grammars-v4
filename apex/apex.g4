@@ -101,10 +101,22 @@ classDeclaration
     ;
 
 triggerDeclaration
-    :   TRIGGER Identifier ON typeParameters?
-        (EXTENDS type_)?
-        (IMPLEMENTS typeList)?
-        classBody
+    :   TRIGGER Identifier ON type_ triggerEventList
+        triggerBody
+    ;
+
+triggerEventList
+    :   '(' triggerEvent (',' triggerEvent)* ')'
+    ;
+
+triggerEvent
+    :   BEFORE_INSERT
+    |   BEFORE_UPDATE
+    |   BEFORE_DELETE
+    |   AFTER_INSERT
+    |   AFTER_UPDATE
+    |   AFTER_DELETE
+    |   AFTER_UNDELETE
     ;
 
 typeParameters
@@ -146,6 +158,10 @@ typeList
 
 classBody
     :   '{' classBodyDeclaration* '}'
+    ;
+
+triggerBody
+    :   block
     ;
 
 interfaceBody
@@ -738,9 +754,15 @@ DB_UPSERT     : U P S E R T;
 DB_UPDATE     : U P D A T E;
 DB_DELETE     : D E L E T E;
 DB_UNDELETE   : U N D E L E T E;
-TESTMETHOD   : T E S T M E T H O D;
-RUNAS        : S Y S T E M DOT R U N A S;
-
+TESTMETHOD    : T E S T M E T H O D;
+RUNAS         : S Y S T E M DOT R U N A S;
+BEFORE_INSERT : B E F O R E SPACE I N S E R T;
+BEFORE_UPDATE : B E F O R E SPACE U P D A T E;
+BEFORE_DELETE : B E F O R E SPACE D E L E T E;
+AFTER_INSERT  : A F T E R SPACE I N S E R T;
+AFTER_UPDATE  : A F T E R SPACE U P D A T E;
+AFTER_DELETE  : A F T E R SPACE D E L E T E;
+AFTER_UNDELETE: A F T E R SPACE U N D E L E T E;
 
 // ?3.10.1 Integer Literals
 
