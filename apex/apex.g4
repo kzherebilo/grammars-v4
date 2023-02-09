@@ -341,7 +341,7 @@ constructorBody
     ;
 
 qualifiedName
-    :   Identifier ('.' Identifier)*
+    :   (TRIGGER '.')? Identifier ('.' Identifier)*
     ;
 
 literal
@@ -594,6 +594,7 @@ primary
     :   '(' expression ')'
     |   THIS
     |   SUPER
+    |   TRIGGER
     |   literal
     |   Identifier
     |   type_ '.' CLASS
