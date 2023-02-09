@@ -450,10 +450,28 @@ statement
     |   THROW expression ';'
     |   BREAK Identifier? ';'
     |   CONTINUE Identifier? ';'
+    |   SWITCH ON qualifiedName switchBlock
     |   ';'
     |   statementExpression ';'
     |   Identifier ':' statement
     |   apexDbExpression ';'
+    ;
+
+switchBlock
+    :   '{' whenBlock+ whenDefaultBlock? '}'
+    ;
+
+whenBlock
+    :   WHEN whenValue block
+    ;
+
+whenDefaultBlock
+    :   WHEN ELSE block
+    ;
+
+whenValue
+    :   NullLiteral | literal | enumConstantName | Identifier
+    |   (',' literal | enumConstantName | Identifier)*
     ;
 
 propertyBlock
@@ -734,6 +752,7 @@ SHORT         : S H O R T;
 STATIC        : S T A T I C;
 
 SUPER         : S U P E R;
+SWITCH        : S W I T C H;
 SYNCHRONIZED  : S Y N C H R O N I Z E D;
 THIS          : T H I S;
 THROW         : T H R O W;
@@ -742,6 +761,7 @@ TRANSIENT     : T R A N S I E N T;
 TRY           : T R Y;
 VOID          : V O I D;
 VOLATILE      : V O L A T I L E;
+WHEN          : W H E N;
 WHILE         : W H I L E;
 
 // Apexcode specific
