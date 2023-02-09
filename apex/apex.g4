@@ -341,7 +341,7 @@ constructorBody
     ;
 
 qualifiedName
-    :   (TRIGGER '.')? Identifier ('.' Identifier)*
+    :   Identifier ('.' Identifier)*
     ;
 
 literal
