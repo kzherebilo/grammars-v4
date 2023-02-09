@@ -54,7 +54,8 @@ importDeclaration
     ;
 
 typeDeclaration
-    :   classOrInterfaceModifier* classDeclaration
+    :   triggerDeclaration
+    |   classOrInterfaceModifier* classDeclaration
     |   classOrInterfaceModifier* enumDeclaration
     |   classOrInterfaceModifier* interfaceDeclaration
     |   classOrInterfaceModifier* annotationTypeDeclaration
@@ -94,6 +95,13 @@ variableModifier
 
 classDeclaration
     :   CLASS Identifier typeParameters?
+        (EXTENDS type_)?
+        (IMPLEMENTS typeList)?
+        classBody
+    ;
+
+triggerDeclaration
+    :   TRIGGER Identifier ON typeParameters?
         (EXTENDS type_)?
         (IMPLEMENTS typeList)?
         classBody
@@ -678,6 +686,8 @@ BYTE          : B Y T E;
 CATCH         : C A T C H;
 CHAR          : C H A R;
 CLASS         : C L A S S;
+TRIGGER       : T R I G G E R;
+ON            : O N;
 CONST         : C O N S T;
 CONTINUE      : C O N T I N U E;
 DEFAULT       : D E F A U L T;
