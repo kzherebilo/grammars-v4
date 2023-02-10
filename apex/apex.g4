@@ -450,7 +450,7 @@ statement
     |   THROW expression ';'
     |   BREAK Identifier? ';'
     |   CONTINUE Identifier? ';'
-    |   SWITCH ON qualifiedName switchBlock
+    |   SWITCH ON expression switchBlock
     |   ';'
     |   statementExpression ';'
     |   Identifier ':' statement
