@@ -362,7 +362,7 @@ annotation
 annotationName : qualifiedName ;
 
 elementValuePairs
-    :   elementValuePair (',' elementValuePair)*
+    :   elementValuePair (','? elementValuePair)*
     ;
 
 elementValuePair
